@@ -29,23 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            } else {
-              if (snapshot.hasData) {
-                return HomePage(user: snapshot.data!);
-              } else {
-                return SignInPage();
-              }
-            }
-          }),
+      home: SplashScreen(),
     );
   }
 }
@@ -60,20 +44,36 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In page'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              print('Sign in button pressed!');
-              handleSignIn(context);
-            },
-            child: Text('Sign in with Google')),
-      ),
-    );
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else {
+            if (snapshot.hasData) {
+              return HomePage(user: snapshot.data!);
+            } else {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text('Sign In page'),
+                  centerTitle: true,
+                ),
+                body: Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        print('Sign in button pressed!');
+                        handleSignIn(context);
+                      },
+                      child: Text('Sign in with Google')),
+                ),
+              );
+            }
+          }
+        });
   }
 
   Future<void> handleSignIn(BuildContext context) async {
@@ -97,7 +97,9 @@ class _SignInPageState extends State<SignInPage> {
 
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage(user: userCredential.user!)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(user: userCredential.user!)));
       }
     } catch (e) {
       print('Error signing in: $e');
