@@ -16,13 +16,14 @@ class ProductController extends GetxController {
   void fetchProducts() async {
     try {
       print('Calling fetchProducts()');
+      isLoading(true);
       var products = await RemoteServices.fetchProducts();
       if (products != null) {
         productList.value = products;
-        print('$productList');
+        print('Current product list: $productList');
       }
-    } catch (e) {
-      print('Error occurred: $e');
+    } finally {
+      isLoading(false);
     }
   }
 }

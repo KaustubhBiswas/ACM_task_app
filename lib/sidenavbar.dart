@@ -73,11 +73,11 @@ class _SideNavBarState extends State<SideNavBar> {
                     ),
                     ListTile(
                       leading: Icon(
-                        Icons.mail,
+                        Icons.history_edu_outlined,
                         color: Colors.white,
                       ),
                       title: Text(
-                        'Inbox',
+                        'History',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 21,
@@ -85,7 +85,7 @@ class _SideNavBarState extends State<SideNavBar> {
                             fontWeight: FontWeight.w400),
                       ),
                       onTap: () {
-                        print('Inbox Button Pressed');
+                        print('History Button Pressed');
                       },
                     ),
                     ListTile(
