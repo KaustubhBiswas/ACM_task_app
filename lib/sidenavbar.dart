@@ -1,4 +1,5 @@
 import 'package:acm_task_app/main.dart';
+import 'package:acm_task_app/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -73,11 +74,11 @@ class _SideNavBarState extends State<SideNavBar> {
                     ),
                     ListTile(
                       leading: Icon(
-                        Icons.history_edu_outlined,
+                        Icons.person_2_rounded,
                         color: Colors.white,
                       ),
                       title: Text(
-                        'History',
+                        'Profile',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 21,
@@ -85,7 +86,8 @@ class _SideNavBarState extends State<SideNavBar> {
                             fontWeight: FontWeight.w400),
                       ),
                       onTap: () {
-                        print('History Button Pressed');
+                        print('Profile Button Pressed');
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(user: widget.user)));
                       },
                     ),
                     ListTile(
