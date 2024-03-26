@@ -1,16 +1,7 @@
 # acm_task_app
 
-A new Flutter project.
+Flutter app for the task given in my interview with ACM-VIT.
 
-## Getting Started
+**The app is incomplete with respect to the target. Only the last progress made has been put in the repository.**
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Google Drive link containing the screen recording of the app and screenshot of the Firebase console: https://drive.google.com/drive/folders/1mcxUBE0kLQiMIv2xj8Mz49avNVc7xhmu?usp=drive_link
