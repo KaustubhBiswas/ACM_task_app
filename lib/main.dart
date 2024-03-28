@@ -3,6 +3,7 @@ import 'package:acm_task_app/screens/splash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 String? userName, userEmail, userProfilePic;
@@ -11,14 +12,16 @@ GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
   'email',
   'https://www.googleapis.com/auth/contacts.readonly'
 ]);
+
 void main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: FirebaseOptions(
-          apiKey: "AIzaSyDLV11wpcc9PyblbVKRB9AIfsAEiD7nPpI",
-          appId: "1:229381404514:android:36b40e80e91c46350ede3b",
-          messagingSenderId: "229381404514",
-          projectId: "acm-task-app"));
+          apiKey: dotenv.env['apiKey']!,
+          appId: dotenv.env['appId']!,
+          messagingSenderId: dotenv.env['messagingSenderId']!,
+          projectId: dotenv.env['projectId']!));
   runApp(const MyApp());
 }
 
